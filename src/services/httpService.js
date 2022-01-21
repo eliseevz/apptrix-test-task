@@ -2,6 +2,8 @@ import {getAccessToken, getRefreshToken, removeAuthData, setTokens} from "./loca
 import authService from "./authService";
 import axios from "axios";
 
+const youTrack_Token = "perm:cm9vdA==.NDktNQ==.U9qYToWJGGM0yfVz5wjeYYas7FDvGL"
+
 const http = axios.create()
 
 http.interceptors.request.use(
@@ -10,7 +12,7 @@ http.interceptors.request.use(
         if (accessToken) {
             config.headers = {
                 ...config.headers,
-                Authorization: `Bearer ${accessToken}`
+                Authorization: `Bearer ${youTrack_Token}`
             }
         }
         return config

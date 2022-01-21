@@ -1,11 +1,11 @@
 import axios from "axios"
+import {httpService} from "./httpService";
 
-const youTrack = axios.create({
-    baseURL: "https://demo-apptrix.myjetbrains.com/youtrack/api/"
-})
+const baseURL = "https://demo-apptrix.myjetbrains.com/youtrack/api/"
 
 const youTrackService = {
-    get: youTrack.get
+    get: async (url, data) => await httpService.get(baseURL + url, data),
+    post: async (url, data) => await httpService.post(baseURL + url, data),
 }
 
 export default youTrackService
