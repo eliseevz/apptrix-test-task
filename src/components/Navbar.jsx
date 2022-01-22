@@ -24,6 +24,13 @@ const Navbar = () => {
                 <Link className="nav-link text-white" to='/'>Home</Link>
             </li>
             {
+                authStatus && <li className="nav-item">
+                    <Link className="nav-link text-white" to='/tasks'>Tasks</Link>
+                </li>
+            }
+
+
+            {
                 authStatus
                 ? <div className="dropdown ms-5" onClick={handleToggleDropDown}>
                         <div className="btn dropdown-toggle d-flex align-items-center">
@@ -33,7 +40,6 @@ const Navbar = () => {
                         </div>
                         {
                             dropDown && <div className="w-100 dropdown-menu show">
-                                <Link to="/" className="dropdown-item">Profile</Link>
                                 <Link onClick={logoutHandler} to="/" className="dropdown-item">Logout</Link>
                             </div>
                         }

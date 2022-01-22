@@ -1,19 +1,18 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit"
 import authReducer from "./auth";
-import {applyMiddleware} from "redux";
 import usersReducer from "./users";
+import issueReducer from "./issues";
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    users: usersReducer
+    users: usersReducer,
+    issues: issueReducer
 })
 
-const middlewareEnhancer = applyMiddleware()
 
 export function createStore() {
     return configureStore({
-        reducer: rootReducer,
-        middlewareEnhancer
+        reducer: rootReducer
     })
 }
 
