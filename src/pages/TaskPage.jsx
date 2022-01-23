@@ -13,9 +13,12 @@ import {
 import Autocomplete from "react-autocomplete"
 import {getUniqueListOfProjects} from "../utils/getUniqueListOfProjects";
 import Table from "../components/table/Table";
+import history from "../utils/history"
 
 
 const TaskPage = () => {
+
+    console.log()
 
     const dispatch = useDispatch()
 
@@ -79,9 +82,11 @@ const TaskPage = () => {
         setIssues(newIssues)
     }
 
+
     if (issueLoadingStatus) {
         return <p>loading</p>
     }
+
 
     return (
         <div>
@@ -98,7 +103,7 @@ const TaskPage = () => {
                     onChange={handleChange}
                     onSelect={onSelectHandler}
                 />
-                <button onClick={() => submitSearchHandler()} className="btn btn-primary ms-2">
+                <button  onClick={() => submitSearchHandler()} className="btn btn-primary ms-2">
                     <i className="bi bi-search text-white"></i>
                 </button>
                 <Dropdown
@@ -110,9 +115,13 @@ const TaskPage = () => {
                 />
             </div>
             <Table
-                columns={["ID", "SUMMARY", "PROJECT NAME"]}
+                columns={["ID", "SUMMARY", "PROJECT NAME", "Timesheets"]}
                 data={issues}
-                keyList={["id", "summary", ["project", "name"]]}
+                keyList={[
+                    "id", "summary",
+                    ["project", "name"],
+                    (summary) => history.push(`/timesheets?summary=${summary}`)
+                ]}
             />
         </div>
     );

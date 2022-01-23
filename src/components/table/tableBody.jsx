@@ -5,8 +5,6 @@ const TableBody = ({data, keyList, onClickHandler = null, }) => {
     const chainArray = (data, keys) => {
         let result = null
         keys.forEach(key => {
-            console.log(key)
-            console.log(data[key])
             if (result) {
                 result = result[key]
             } else {
@@ -14,6 +12,18 @@ const TableBody = ({data, keyList, onClickHandler = null, }) => {
             }
         })
         return result
+    }
+
+    const render = (key, dataItem) => {
+        if (typeof key === "string") {
+            return dataItem[key]
+        }
+        if (Array.isArray(key)) {
+            return chainArray(dataItem, key)
+        }
+        if (typeof key === "function") {
+            return <button onClick={() => key(dataItem.summary)}>timesheets</button>
+        }
     }
 
     return (
@@ -24,9 +34,11 @@ const TableBody = ({data, keyList, onClickHandler = null, }) => {
                     {
                         keyList.map(key => <th key={key} scope="row">
                             {
-                                !Array.isArray(key)
-                                    ? dataItem[key]
-                                    : chainArray(dataItem, key)
+                                // !Array.isArray(key)
+                                //     ? dataItem[key]
+                                //     : chainArray(dataItem, key)
+                                render(key, dataItem)
+
                             }
                         </th>)
                     }

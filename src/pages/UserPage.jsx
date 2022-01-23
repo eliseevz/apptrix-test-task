@@ -21,7 +21,7 @@ const UserPage = () => {
     }
 
     return (
-        <div>
+        user && <div>
             <button onClick={handleBackClick} className="btn btn-primary mt-3">Назад</button>
             <table className="table">
                 <thead>

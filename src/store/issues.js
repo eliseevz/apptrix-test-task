@@ -70,17 +70,13 @@ export const loadAutoCompleteData = (search) => async (dispatch) => {
     dispatch(autoCompleteRequest())
     try {
         console.log(search)
-        const {data} = await youTrackService.get(`issues?fields=id,summary,project(name)&query=project:${search.toLowerCase()}`)
+        const {data} = await youTrackService.get(`issues?fields=id,summary,project(name)`, {
+            params: {
+                query: `name:${search}`
+            }
+        })
         const namesArray = getUniqueListOfProjects(data)
-        // data.forEach(issue => {
-        //     if (!namesArray.includes(issue.project.name)) {
-        //         namesArray.push(issue.project.name)
-        //     }
-        // })
-
-        console.log(namesArray, ' names arr')
         const transformedArr = namesArray.map(name => ({label: name}))
-        console.log(transformedArr, ' transf')
         dispatch(autoCompleteRequestSuccess(transformedArr))
 
     } catch (e) {

@@ -24,9 +24,11 @@ const Navbar = () => {
                 <Link className="nav-link text-white" to='/'>Home</Link>
             </li>
             {
-                authStatus && <li className="nav-item">
-                    <Link className="nav-link text-white" to='/tasks'>Tasks</Link>
-                </li>
+                authStatus && <>
+                    <li className="nav-item">
+                        <Link className="nav-link text-white" to='/tasks'>Tasks</Link>
+                    </li>
+                </>
             }
 
 
