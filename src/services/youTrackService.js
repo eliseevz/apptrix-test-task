@@ -4,7 +4,7 @@ import {httpService} from "./httpService";
 const baseURL = "https://demo-apptrix.myjetbrains.com/youtrack/api/"
 
 const youTrackService = {
-    get: async (url, data) => await httpService.get(baseURL + url, data),
+    get: async (url, config) => await httpService.get(baseURL + url, config),
     post: async (url, data) => await httpService.post(baseURL + url, data),
 }
 

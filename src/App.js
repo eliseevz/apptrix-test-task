@@ -10,6 +10,7 @@ import UserPage from "./pages/UserPage";
 import Logout from "./components/Logout";
 import history from "./utils/history";
 import TaskPage from "./pages/TaskPage";
+import TimeSheets from "./pages/Timesheets";
 
 function App() {
 
@@ -20,9 +21,10 @@ function App() {
                 <Navbar/>
                 <div className="container pb-2">
                     <Switch>
-                        <ProtectedRoute path='/tasks' component={TaskPage} />
-                        <ProtectedRoute path='/:id' component={UserPage} />
-                        <Route path="/" component={Home}/>
+                        <ProtectedRoute exact  path='/timesheets' component={TimeSheets} />
+                        <ProtectedRoute exact path='/tasks' component={TaskPage} />
+                        <ProtectedRoute exact path='/:id' component={UserPage} />
+                        <Route  path="/" component={Home}/>
                     </Switch>
                 </div>
             </Router>
