@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TableBody = ({data, keyList, onClickHandler = null, }) => {
+const TableBody = ({data, keyList, onClickHandler = null, role }) => {
 
     const chainArray = (data, keys) => {
         let result = null
@@ -22,7 +22,7 @@ const TableBody = ({data, keyList, onClickHandler = null, }) => {
             return chainArray(dataItem, key)
         }
         if (typeof key === "function") {
-            return <button onClick={() => key(dataItem.summary)}>timesheets</button>
+            return <button key={dataItem.id + Math.random()} onClick={() => key(dataItem.summary)}>timesheets</button>
         }
     }
 
@@ -30,15 +30,15 @@ const TableBody = ({data, keyList, onClickHandler = null, }) => {
         <tbody>
         {
             data.map( dataItem => {
-                return <tr onClick={onClickHandler ? () => onClickHandler(dataItem.id) : null} key={dataItem.id}>
+                return <tr
+                    key={Math.random()}
+                    onClick={onClickHandler ? () => onClickHandler(dataItem.id) : null}
+                    role={role ? role : null}
+                >
                     {
-                        keyList.map(key => <th key={key} scope="row">
+                        keyList.map(Ikey => <th key={Math.random()} scope="row">
                             {
-                                // !Array.isArray(key)
-                                //     ? dataItem[key]
-                                //     : chainArray(dataItem, key)
-                                render(key, dataItem)
-
+                                render(Ikey, dataItem)
                             }
                         </th>)
                     }

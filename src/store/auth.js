@@ -42,14 +42,12 @@ const {authRequest, authSuccess, authFailed, authLogout} = actions
 
 
 export const login = ({username, password}) => async dispatch => {
-    console.log({username, password})
     dispatch(authRequest())
     try {
         const response = await authService.login({username, password})
         dispatch(authSuccess(response))
         setTokens(response)
     } catch (e) {
-        console.log(e.message)
         dispatch(authFailed(e.message))
     }
 }

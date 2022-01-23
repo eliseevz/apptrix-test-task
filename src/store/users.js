@@ -37,7 +37,6 @@ export const loadUsers = () => async (dispatch) => {
         const {data} = await youTrackService.get("admin/users?fields=id,login,name,email")
         dispatch(usersRequestSuccess(data))
     } catch (e) {
-        console.log(e.message)
         dispatch(usersRequestFailed(e.message))
     }
 }

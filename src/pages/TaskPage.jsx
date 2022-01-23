@@ -18,8 +18,6 @@ import history from "../utils/history"
 
 const TaskPage = () => {
 
-    console.log()
-
     const dispatch = useDispatch()
 
     const [search, setSearch] = useState("")
@@ -59,11 +57,12 @@ const TaskPage = () => {
 
     const filterHandleChange = (e) => {
         setFilter(e.value)
+        setSearch("")
         if (e.value === "Default") {
             setIssues(issuesData)
             return
         }
-        setIssues(prevState => issuesData.filter(issue => issue.project.name === e.value))
+        setIssues(issuesData.filter(issue => issue.project.name === e.value))
     }
 
     const onSelectHandler = (val) => {
@@ -80,6 +79,7 @@ const TaskPage = () => {
         }
         const newIssues = issuesData.filter(issue => issue.project.name.toLowerCase().includes(search.toLowerCase()))
         setIssues(newIssues)
+        setFilter("Default")
     }
 
 

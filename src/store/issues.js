@@ -61,7 +61,6 @@ export const loadIssueList = () => async (dispatch) => {
         const {data} = await youTrackService.get("issues?fields=id,summary,project(name)")
         dispatch(issueRequestSuccess(data))
     } catch (e) {
-        console.log(e.message)
         dispatch(issueRequestFailed(e.message))
     }
 }
@@ -69,7 +68,6 @@ export const loadIssueList = () => async (dispatch) => {
 export const loadAutoCompleteData = (search) => async (dispatch) => {
     dispatch(autoCompleteRequest())
     try {
-        console.log(search)
         const {data} = await youTrackService.get(`issues?fields=id,summary,project(name)`, {
             params: {
                 query: `name:${search}`
