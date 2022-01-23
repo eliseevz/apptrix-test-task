@@ -1,6 +1,7 @@
 import {getAccessToken, getRefreshToken, removeAuthData, setTokens} from "./localStorageService";
 import authService from "./authService";
 import axios from "axios";
+import history from "../utils/history"
 
 const youTrack_Token = "perm:cm9vdA==.NDktNQ==.U9qYToWJGGM0yfVz5wjeYYas7FDvGL"
 
@@ -31,6 +32,7 @@ http.interceptors.request.use(
                 const data = await authService.refresh(refresh_token)
                 setTokens(data)
             } catch (e) {
+                history.push("/")
                 removeAuthData()
             }
         }

@@ -1,13 +1,10 @@
-import React, {useEffect} from "react"
+import React from "react"
 import Navbar from "./components/Navbar";
 import {Route, Router, Switch} from "react-router-dom";
 import Home from "./pages/Home";
-import {useDispatch} from "react-redux";
-import {loadUsers} from "./store/users";
 import AppLoader from "./hoc/AppLoader";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import UserPage from "./pages/UserPage";
-import Logout from "./components/Logout";
 import history from "./utils/history";
 import TaskPage from "./pages/TaskPage";
 import TimeSheets from "./pages/Timesheets";

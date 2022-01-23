@@ -10,22 +10,21 @@ const UsersList = () => {
     const usersLoadingStatus = useSelector(getUsersLoadingStatus())
     const history = useHistory()
 
-    console.log(users, ' users')
-
-    if (usersLoadingStatus) {
-        return <p>loading...</p>
-    }
 
     const handleOpenUser = (id) => {
         history.push(`/${id}`)
     }
 
+    if (usersLoadingStatus) {
+        return <p>loading...</p>
+    }
     return (
         <Table
             columns={["ID", "NAME", "LOGIN", "EMAIL"]}
             data={users}
-            keyList={["id", "name", "login", "email", ["project", 'name']]}
+            keyList={["id", "name", "login", "email"]}
             onClickHandler={handleOpenUser}
+            role="button"
         />
     );
 };
